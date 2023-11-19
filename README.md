@@ -1,4 +1,4 @@
-# Suitable-materials-for-solar-cell-manufacture
+# Suitable materials for solar cell manufacture
 
 This project is centered around identifying promising materials for organic solar cells, with a specific focus on predicting the HOMO-LUMO gap. The HOMO-LUMO gap serves as a crucial indicator of molecular efficiency in utilizing solar energy—the larger the gap, the more efficient the molecule is for solar cells. Unlike traditional density functional theory, this project leverages machine learning techniques to predict the HOMO-LUMO gap from molecular descriptions.
 
