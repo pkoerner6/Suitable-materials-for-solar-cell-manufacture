@@ -161,7 +161,7 @@ class torch_dataset(torch.utils.data.Dataset):
       return self.X[i], self.y[i]
 
 
-def make_feature_extractor(x, y, train_new, batch_size=250, eval_size=2000): # eval_size: Tested 5000, 2000, 1000; best so far: 2000;;;;;;;;;;;batch_size: Tested 250, 100, 500; best so far: 250
+def make_feature_extractor(x, y, train_new, batch_size=250, eval_size=2000):
     """
     This function trains the feature extractor on the pretraining data and returns a function which
     can be used to extract features from the training and test data.
@@ -294,7 +294,7 @@ def make_feature_extractor(x, y, train_new, batch_size=250, eval_size=2000): # e
         first_to_last_layer = nn.Sequential(*list(model.children())[:-1]) 
         first_to_last_layer.eval()
         features1 = first_to_last_layer(x_train)
-        features = torch.cat((features12, features11, features10, features9, features8, features7, features6, features5, features4, features3, features1), 1) # torch.cat((features3, features2, features1), 1)
+        features = torch.cat((features12, features11, features10, features9, features8, features7, features6, features5, features4, features3, features1), 1) 
         features = features.detach().numpy()
 
         return features
@@ -355,7 +355,6 @@ def get_regression_model_svr(x_train, y_train):
     return model, best_score
 
 
-# Main function. You don't have to change this
 if __name__ == '__main__':
     best_model_num = ""
     best_score = 1000
@@ -384,7 +383,6 @@ if __name__ == '__main__':
     log.info("The best model had this mean score: ", best_score=best_score)
 
     # For the best model: 
-    best_model_num = best_model_num
     x_pretrain, y_pretrain, x_train, y_train, x_test = load_data()
     feature_extractor =  make_feature_extractor(x_pretrain, y_pretrain, train_new=False)
     PretrainedFeatureClass = make_pretraining_class({"pretrain": feature_extractor})
